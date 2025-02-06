@@ -1,0 +1,11 @@
+<div class="container">
+<ul class="menu bg-base-200 rounded-box w-56">
+    <li><%= link_to t(".sign_in"), new_user_session_path %></li>
+    <li><%= link_to t(".sign_up"), new_user_registration_path %></li>
+    <li><%= link_to t(".forgot_your_password"), new_user_password_path %></li>
+    <% if user_signed_in? %>
+    <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+    <li><%= link_to "マイページ", user_path(current_user) %></li>
+    <% end %>
+</ul>
+</div>

@@ -1,5 +1,10 @@
-Rails.application.routes.draw do
-  devise_for :users
+Rails.application.routes.draw do 
+  root to: "tops#index"
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+}
+  resources :users, only: [:show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,4 +17,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  
 end
